@@ -1,6 +1,7 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 import google.generativeai as genai
+import re
 
 app = Flask(__name__)
 CORS(app)
@@ -25,6 +26,17 @@ def chat_response():
             
         except Exception as e:
             return jsonify({"error": str(e)}), 500
+        
+# def format_response(text):
+#     """
+#     Gemini 응답을 보기 좋게 변환
+#     """
+#     text = re.sub(r"\*\*(.*?)\*\*", r"\1", text)  # **텍스트** → 텍스트 (굵은 글씨 제거)
+#     text = text.replace("\n", "<br>")  # 개행을 <br> 태그로 변환
+#     text = re.sub(r"- (.+)", r"• \1", text)  # 리스트(- item)를 점 리스트(• item)로 변환
+
+#     return text
+
 
 if __name__ == '__main__':
     app.run(port=8501, debug=True)
