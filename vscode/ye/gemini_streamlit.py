@@ -1,6 +1,11 @@
 # st_chatbot.py
 import google.generativeai as genai 
 import streamlit as st
+from flask import Flask
+from flask_cors import CORS
+
+app = Flask(__name__)
+CORS(app)  # 모든 요청 허용
 
 # ✅ Google Gemini API 키 설정
 genai.configure(api_key="AIzaSyDgzsS6mn3ozqSYbfwwsC-21uD_BPniIpg")  # 여기에 API 키 입력
